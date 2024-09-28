@@ -29,7 +29,7 @@ public class TestExpenseTracker {
      * @param args The command line arguments
      * @throws IOException If an error occurs with the storage file
      */
-    public static void main(String [] args) throws IOException {
+    public static void main(String [] args) {
         //Welcome message
         System.out.println("  Welcome to the Expense Tracker");
         //Scanner for user input
@@ -46,8 +46,14 @@ public class TestExpenseTracker {
             if(input == 1) {
                 //Display all transactions
                 System.out.println("\n  MONTHLY EXPENSES");
-                for(Transaction transaction : TransactionIO.findAll()) {
-                    System.out.println("\n" + transaction);
+                try {
+                    for(Transaction transaction : TransactionIO.findAll()) {
+                        System.out.println("\n" + transaction);
+                    }
+                }
+                //If exception occurred, display message to user
+                catch (IOException exception) {
+                    System.out.println("\n  Exception: " + exception.getMessage());
                 }
             } 
             //If user selected option 2
@@ -73,7 +79,7 @@ public class TestExpenseTracker {
                 try {
                     TransactionIO.bulkInsert(transactions);
                 } 
-                //If exception occured, display message to user
+                //If exception occurred, display message to user
                 catch (IOException exception) {
                     System.out.println("\n  Exception: " + exception.getMessage());
                 }
@@ -83,9 +89,15 @@ public class TestExpenseTracker {
                 //Create running total
                 double monthlyExpense = 0;
                 //Find all transactions and loop through them
-                for(Transaction transaction : TransactionIO.findAll()) {
-                    //Add transaction amount to running total
-                    monthlyExpense += transaction.getAmount();
+                try {
+                    for(Transaction transaction : TransactionIO.findAll()) {
+                        //Add transaction amount to running total
+                        monthlyExpense += transaction.getAmount();
+                    }
+                }
+                //If exception occurred, display message to user
+                catch (IOException exception) {
+                    System.out.println("\n  Exception: " + exception.getMessage());
                 }
                 //Display formatted total to user
                 System.out.println(String.format("\n  Your total monthly expense is $%,6.2f", monthlyExpense));
