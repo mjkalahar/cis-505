@@ -39,14 +39,6 @@ public class Composer {
     }
 
     /*
-     * Set id of composer
-     * @param int id The id of the composer
-     */
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    /*
      * Get name of composer
      * @return String Name of composer
      */
@@ -55,27 +47,11 @@ public class Composer {
     }
 
     /*
-     * Set name of composer
-     * @param String name The name of the composer
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /*
      * Get genre of composer
      * @return String Genre of composer
      */
     public String getGenre() {
         return genre;
-    }
-
-    /*
-     * Set genre of composer
-     * @param String genre The genre of the composer
-     */
-    public void setGenre(String genre) {
-        this.genre = genre;
     }
 
     /*
